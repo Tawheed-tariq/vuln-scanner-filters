@@ -1,0 +1,236 @@
+[+] URL: https://enterprise.leadgenapp.io/ [162.240.76.5]
+[+] Started: Mon Feb 12 08:53:04 2024
+
+Interesting Finding(s):
+
+[+] Headers
+ | Interesting Entries:
+ |  - Server: Apache
+ |  - X-Endurance-Cache-Level: 0
+ |  - X-nginx-cache: WordPress
+ | Found By: Headers (Passive Detection)
+ | Confidence: 100%
+
+[+] robots.txt found: https://enterprise.leadgenapp.io/robots.txt
+ | Interesting Entries:
+ |  - /wp-admin/
+ |  - /wp-admin/admin-ajax.php
+ | Found By: Robots Txt (Aggressive Detection)
+ | Confidence: 100%
+
+[+] XML-RPC seems to be enabled: https://enterprise.leadgenapp.io/xmlrpc.php
+ | Found By: Direct Access (Aggressive Detection)
+ | Confidence: 100%
+ | References:
+ |  - http://codex.wordpress.org/XML-RPC_Pingback_API
+ |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_ghost_scanner/
+ |  - https://www.rapid7.com/db/modules/auxiliary/dos/http/wordpress_xmlrpc_dos/
+ |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_xmlrpc_login/
+ |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_pingback_access/
+
+[+] WordPress readme found: https://enterprise.leadgenapp.io/readme.html
+ | Found By: Direct Access (Aggressive Detection)
+ | Confidence: 100%
+
+[+] The external WP-Cron seems to be enabled: https://enterprise.leadgenapp.io/wp-cron.php
+ | Found By: Direct Access (Aggressive Detection)
+ | Confidence: 60%
+ | References:
+ |  - https://www.iplocation.net/defend-wordpress-from-ddos
+ |  - https://github.com/wpscanteam/wpscan/issues/1299
+
+[+] WordPress version 6.4.3 identified (Latest, released on 2024-01-30).
+ | Found By: Rss Generator (Passive Detection)
+ |  - https://enterprise.leadgenapp.io/feed/, <generator>https://wordpress.org/?v=6.4.3</generator>
+ |  - https://enterprise.leadgenapp.io/comments/feed/, <generator>https://wordpress.org/?v=6.4.3</generator>
+
+[+] WordPress theme in use: hello-elementor
+ | Location: https://enterprise.leadgenapp.io/wp-content/themes/hello-elementor/
+ | Last Updated: 2024-01-24T00:00:00.000Z
+ | Readme: https://enterprise.leadgenapp.io/wp-content/themes/hello-elementor/readme.txt
+ | [!] The version is out of date, the latest version is 3.0.1
+ | Style URL: https://enterprise.leadgenapp.io/wp-content/themes/hello-elementor/style.css
+ | Style Name: Hello Elementor
+ | Style URI: https://elementor.com/hello-theme/?utm_source=wp-themes&utm_campaign=theme-uri&utm_medium=wp-dash
+ | Description: A plain-vanilla & lightweight theme for Elementor page builder...
+ | Author: Elementor Team
+ | Author URI: https://elementor.com/?utm_source=wp-themes&utm_campaign=author-uri&utm_medium=wp-dash
+ |
+ | Found By: Urls In Homepage (Passive Detection)
+ | Confirmed By: Urls In 404 Page (Passive Detection)
+ |
+ | Version: 2.7.1 (80% confidence)
+ | Found By: Style (Passive Detection)
+ |  - https://enterprise.leadgenapp.io/wp-content/themes/hello-elementor/style.css, Match: 'Version: 2.7.1'
+
+[+] Enumerating Vulnerable Plugins (via Passive Methods)
+[+] Checking Plugin Versions (via Passive and Aggressive Methods)
+
+[i] Plugin(s) Identified:
+
+[+] elementor
+ | Location: https://enterprise.leadgenapp.io/wp-content/plugins/elementor/
+ | Last Updated: 2024-02-07T15:41:00.000Z
+ | [!] The version is out of date, the latest version is 3.19.2
+ |
+ | Found By: Urls In Homepage (Passive Detection)
+ | Confirmed By: Urls In 404 Page (Passive Detection)
+ |
+ | [!] 5 vulnerabilities identified:
+ |
+ | [!] Title: Elementor Website Builder < 3.16.5 - Authenticated (Contributor+) Stored Cross-Site Scripting via get_inline_svg()
+ |     Fixed in: 3.16.5
+ |     References:
+ |      - https://wpscan.com/vulnerability/62b53acf-6551-4ea7-8727-039a3c9ba7ce
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-47505
+ |      - https://www.wordfence.com/threat-intel/vulnerabilities/id/b44ef21f-464e-487a-ba5a-fe889e4c488c
+ |
+ | [!] Title: Elementor Website Builder < 3.16.5 - Missing Authorization to Arbitrary Attachment Read
+ |     Fixed in: 3.16.5
+ |     References:
+ |      - https://wpscan.com/vulnerability/e60f0f7e-4c3b-4107-803a-8e03526859ed
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-47504
+ |      - https://www.wordfence.com/threat-intel/vulnerabilities/id/c873c76a-144e-4945-8fa2-c9ffe0e3c061
+ |
+ | [!] Title: Elementor < 3.18.2 - Contributor+ Arbitrary File Upload to RCE via Template Import
+ |     Fixed in: 3.18.2
+ |     References:
+ |      - https://wpscan.com/vulnerability/a6b3b14c-f06b-4506-9b88-854f155ebca9
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-48777
+ |      - https://www.wordfence.com/threat-intel/vulnerabilities/id/5b6d0a38-ac28-41c9-9da1-b30b3657b463
+ |
+ | [!] Title: Elementor < 3.19.1 - Authenticated(Contributor+) Arbitrary File Deletion and PHAR Deserialization
+ |     Fixed in: 3.19.1
+ |     References:
+ |      - https://wpscan.com/vulnerability/4d7dfcc6-8c32-4e0d-b3bb-7e2685916e2b
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-24934
+ |      - https://www.wordfence.com/threat-intel/vulnerabilities/id/4915b769-9499-40ac-835e-279e3a910558
+ |
+ | [!] Title: Elementor Website Builder – More than Just a Page Builder < 3.19.0 - Authenticated (Contributor+) Stored Cross-Site Scripting via get_image_alt
+ |     Fixed in: 3.19.0
+ |     References:
+ |      - https://wpscan.com/vulnerability/57af46d9-9a26-4085-9829-e0add7893332
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-0506
+ |      - https://www.wordfence.com/threat-intel/vulnerabilities/id/4473d3f6-e324-40f5-b92b-167f76b17332
+ |
+ | Version: 3.13.4 (100% confidence)
+ | Found By: Query Parameter (Passive Detection)
+ |  - https://enterprise.leadgenapp.io/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=3.13.4
+ | Confirmed By:
+ |  Readme - Stable Tag (Aggressive Detection)
+ |   - https://enterprise.leadgenapp.io/wp-content/plugins/elementor/readme.txt
+ |  Readme - ChangeLog Section (Aggressive Detection)
+ |   - https://enterprise.leadgenapp.io/wp-content/plugins/elementor/readme.txt
+
+[+] elementskit-lite
+ | Location: https://enterprise.leadgenapp.io/wp-content/plugins/elementskit-lite/
+ | Last Updated: 2023-12-21T05:09:00.000Z
+ | [!] The version is out of date, the latest version is 3.0.4
+ |
+ | Found By: Urls In Homepage (Passive Detection)
+ | Confirmed By: Urls In 404 Page (Passive Detection)
+ |
+ | [!] 2 vulnerabilities identified:
+ |
+ | [!] Title: Elements kit Elementor addons < 2.9.2 - Missing Authorization
+ |     Fixed in: 2.9.2
+ |     References:
+ |      - https://wpscan.com/vulnerability/e9dda50c-b2f6-4fbe-8e40-5aff175b8916
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-39993
+ |      - https://www.wordfence.com/threat-intel/vulnerabilities/id/5ff589ec-756d-4183-8bb8-61dae9be7c5d
+ |
+ | [!] Title: ElementsKit Lite < 3.0.4 - Unauthenticated Sensitive Information Exposure
+ |     Fixed in: 3.0.4
+ |     References:
+ |      - https://wpscan.com/vulnerability/f42f0003-fc64-44b7-8461-73208ec1862d
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-6582
+ |      - https://www.wordfence.com/threat-intel/vulnerabilities/id/ff4ae5c8-d164-4c2f-9bf3-83934c22cf4c
+ |
+ | Version: 2.8.8 (80% confidence)
+ | Found By: Readme - Stable Tag (Aggressive Detection)
+ |  - https://enterprise.leadgenapp.io/wp-content/plugins/elementskit-lite/readme.txt
+
+[+] gs-logo-slider
+ | Location: https://enterprise.leadgenapp.io/wp-content/plugins/gs-logo-slider/
+ | Last Updated: 2024-01-28T09:18:00.000Z
+ | [!] The version is out of date, the latest version is 3.6.5
+ |
+ | Found By: Urls In Homepage (Passive Detection)
+ |
+ | [!] 1 vulnerability identified:
+ |
+ | [!] Title: GS Logo Slider < 3.5.2 - Cross-Site Request Forgery
+ |     Fixed in: 3.5.2
+ |     References:
+ |      - https://wpscan.com/vulnerability/edd53e60-836f-4b36-acf6-62eb335fe22a
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-51530
+ |      - https://www.wordfence.com/threat-intel/vulnerabilities/id/c89a8001-ab50-466c-aa51-62c0ff5f86dc
+ |
+ | Version: 3.4.7 (100% confidence)
+ | Found By: Readme - Stable Tag (Aggressive Detection)
+ |  - https://enterprise.leadgenapp.io/wp-content/plugins/gs-logo-slider/readme.txt
+ | Confirmed By: Readme - ChangeLog Section (Aggressive Detection)
+ |  - https://enterprise.leadgenapp.io/wp-content/plugins/gs-logo-slider/readme.txt
+
+[+] Enumerating Vulnerable Themes (via Passive and Aggressive Methods)
+[+] URL: https://enterprise.leadgenapp.io/ [162.240.76.5]                                                                                     > (68 / 638) 10.65%  ETA: 00:03:40
+[+] Started: Mon Feb 12 08:17:31 2024
+
+Interesting Finding(s):
+
+[+] Headers
+ | Interesting Entries:
+ |  - Server: Apache
+ |  - X-Endurance-Cache-Level: 0
+ |  - X-nginx-cache: WordPress
+ | Found By: Headers (Passive Detection)
+ | Confidence: 100%
+
+[+] robots.txt found: https://enterprise.leadgenapp.io/robots.txt
+ | Interesting Entries:
+ |  - /wp-admin/
+ |  - /wp-admin/admin-ajax.php
+ | Found By: Robots Txt (Aggressive Detection)
+ | Confidence: 100%
+
+[+] XML-RPC seems to be enabled: https://enterprise.leadgenapp.io/xmlrpc.php
+ | Found By: Direct Access (Aggressive Detection)
+ | Confidence: 100%
+ | References:
+ |  - http://codex.wordpress.org/XML-RPC_Pingback_API
+ |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_ghost_scanner/
+ |  - https://www.rapid7.com/db/modules/auxiliary/dos/http/wordpress_xmlrpc_dos/
+ |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_xmlrpc_login/
+ |  - https://www.rapid7.com/db/modu Checking Known Locations - Time: 00:00:27 <=========                                                                                        Checking Known Locations - Time: 00:05:27 <================================================================================================> (638 / 638) 100.00% Time: 00:05:27
+[+] Checking Theme Versions (via Passive and Aggressive Methods)
+
+[i] No themes Found.
+
+[+] Enumerating Users (via Passive and Aggressive Methods)
+ Brute Forcing Author IDs - Time: 00:00:10 <==================================================================================================> (10 / 10) 100.00% Time: 00:00:10
+
+[i] User(s) Identified:
+
+[+] admin
+ | Found By: Rss Generator (Passive Detection)
+ | Confirmed By:
+ |  Wp Json Api (Aggressive Detection)
+ |   - https://enterprise.leadgenapp.io/wp-json/wp/v2/users/?per_page=100&page=1
+ |  Oembed API - Author URL (Aggressive Detection)
+ |   - https://enterprise.leadgenapp.io/wp-json/oembed/1.0/embed?url=https://enterprise.leadgenapp.io/&format=json
+ |  Rss Generator (Aggressive Detection)
+ |  Author Id Brute Forcing - Author Pattern (Aggressive Detection)
+ |  Login Error Messages (Aggressive Detection)
+
+[+] WPScan DB API OK
+ | Plan: free
+ | Requests Done (during the scan): 6
+ | Requests Remaining: 19
+
+[+] Finished: Mon Feb 12 08:59:46 2024
+[+] Requests Done: 704
+[+] Cached Requests: 12
+[+] Data Sent: 249.401 KB
+[+] Data Received: 1.244 MB
+[+] Memory used: 306.098 MB
+[+] Elapsed time: 00:06:41

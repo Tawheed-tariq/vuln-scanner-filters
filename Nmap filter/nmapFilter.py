@@ -5,7 +5,7 @@ def parse_nmap_results(nmap_output):
     port_pattern = re.compile(r'(\d+)\/(tcp|udp)\s+(open)\s+(.+)')
     banner_pattern = re.compile(r'Nmap scan report for (.+)')
     service_pattern = re.compile(r'Service Info: (.+)')
-
+    example_pattern = re.compile(r'\s{2,}')
     wordpress_sites = []
 
     current_site = None
@@ -16,12 +16,20 @@ def parse_nmap_results(nmap_output):
         service_match = service_pattern.match(line)
 
 
-
         if port_match:
             port = int(port_match.group(1))
             protocol = port_match.group(2)
             state = port_match.group(3)
             service_info = port_match.group(4)
+            serviceArr = example_pattern.split(service_info)
+            version = ''
+            service = ''
+            if(len(serviceArr) < 2):
+                version = None
+                service = serviceArr[0]
+            else:
+                service= serviceArr[0]
+                version = serviceArr[1]
             # Check if the service might be related to WordPress
 
 
@@ -31,7 +39,8 @@ def parse_nmap_results(nmap_output):
                 'port': port, 
                 'protocol': protocol, 
                 'state': state, 
-                'service_info': service_info
+                'service' : service,
+                'version': version
             })
             wordpress_sites.append(current_site)
             # else:
@@ -54,7 +63,8 @@ def parse_nmap_results(nmap_output):
 #80 -> port
 #tcp -> protocol
 #open -> starus
-#http    Apache httpd 2.4.29 ((Ubuntu)) -> service
+#http -> service
+#Apache httpd 2.4.29 ((Ubuntu)) -> version
 
 # Example usage:
 nmap_output = """
@@ -145,11 +155,12 @@ parsed_sites = parse_nmap_results(nmap_output)
 
 # Display parsed WordPress sites
 print('WordPress Sites:')
+print('\n\n')
 for site in parsed_sites:
-    print("IP:", site['ports'][0]['service_info'].split()[0])
+    # print("IP:", site['ports'][0]['service'])
     print("Open Ports:", site['ports'])
-    print("Services:", site['services'])
-    print("Banner:", site.get('banner', 'N/A'))
-
+    # print("Services:", site['services'])
+    # print("Banner:", site.get('banner', 'N/A'))
+    print('\n')
 
 

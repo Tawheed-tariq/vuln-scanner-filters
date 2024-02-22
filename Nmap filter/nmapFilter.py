@@ -1,5 +1,4 @@
 import re
-
 def parse_nmap_results(nmap_output):
     # Regular expressions to match open ports and banners
     port_pattern = re.compile(r'(\d+)\/(tcp|udp)\s+(open)\s+(.+)')
@@ -49,13 +48,13 @@ def parse_nmap_results(nmap_output):
 
 
 
-        elif banner_match:
-            if current_site:
-                current_site['banner'] = banner_match.group(1)
+        # elif banner_match:
+        #     if current_site:
+        #         current_site['banner'] = banner_match.group(1)
 
-        elif service_match:
-            if current_site:
-                current_site['services'].append(service_match.group(1))
+        # elif service_match:
+        #     if current_site:
+        #         current_site['services'].append(service_match.group(1))
 
     return wordpress_sites
 

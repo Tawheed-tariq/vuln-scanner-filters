@@ -5,10 +5,6 @@ def read_file(filename):
     with open(filename, 'r') as file:
         return file.read()
 
-current_directory = os.path.dirname(os.path.abspath(__file__))
-filePath = os.path.join(current_directory, 'namp.txt')
-nmap_output = read_file(filePath)
-
 def parse_nmap_results(nmap_output):
     # Regular expressions to match open ports and banners
     port_pattern = re.compile(r'(\d+)\/(tcp|udp)\s+(open)\s+(.+)')
@@ -53,15 +49,18 @@ def parse_nmap_results(nmap_output):
     return wordpress_sites
 
 
+current_directory = os.path.dirname(os.path.abspath(__file__))
+filePath = os.path.join(current_directory, 'namp.txt')
+nmap_output = read_file(filePath)
+
+
 print('Parsing Nmap results...')
 parsed_sites = parse_nmap_results(nmap_output)
 
 # Display parsed WordPress sites
-print('WordPress Sites:')
-print('\n\n')
+print('WordPress Sites:\n')
 for site in parsed_sites:
     print("IP:", site['ports'][0]['service'])
     print("Open Ports:", site['ports'])
-    print('\n')
 
 

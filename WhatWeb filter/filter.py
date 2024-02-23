@@ -7,11 +7,6 @@ def read_file(filename):
     with open(filename, 'r') as file:
         return file.read()
 
-current_directory = os.path.dirname(os.path.abspath(__file__))
-filePath = os.path.join(current_directory, 'cleaned_whatweb.txt')
-
-
-scan_output = read_file(filePath)
 
 def filter_scan(scan_output):
     #regular expression patterns
@@ -43,6 +38,11 @@ def filter_scan(scan_output):
     }
 
     return matches
+
+
+current_directory = os.path.dirname(os.path.abspath(__file__))
+filePath = os.path.join(current_directory, 'cleaned_whatweb.txt')
+scan_output = read_file(filePath)
 
 
 filter_result = filter_scan(scan_output)

@@ -18,52 +18,60 @@ def parse_wp_results(wp_output):
     wordpress_version = wordpress_version_pattern.search(wp_output)
 
     matches = {
-        'robots.txt' : robots_match.group(1),
-        'xml-RPC' : xml_match.group(1),
-        'wordpress readme' : wordpress_readme.group(1),
-        'wordpress version' : wordpress_version.group(1)
+        'robots.txt' : robots_match.group(1) if robots_match else '',
+        'xml-RPC' : xml_match.group(1) if xml_match else '',
+        'wordpress readme' : wordpress_readme.group(1) if wordpress_readme else '',
+        'wordpress version' : wordpress_version.group(1) if wordpress_version else ''
     }
 
     return matches
 
 #scrapes the number of vulnerabilities and title, version of each vulnerability and returns an array (output data)
 def find_vulnerabilities(wp_output):
-    plugins_pattern = r'\[i\] Plugin\(s\) Identified:\n(.*)Interesting Finding\(s\):'
+    try:
+        plugins_pattern = r'\[i\] Plugin\(s\) Identified:\n(.*?)(?:Interesting Finding\(s\):|\[i\])'
 
-    plugins = re.search(plugins_pattern, wp_output, re.DOTALL)
-    plugin_output = plugins.group(1).strip() #plugins part of the wp_output
-    plugin_arr = re.findall(r'\[\+\]\s(.*?)\n\n',plugin_output , re.DOTALL) #scrapes all the plugins present in plugin_output
+        plugins = re.search(plugins_pattern, wp_output, re.DOTALL)
+        plugin_output = plugins.group(1).strip() #plugins part of the wp_output
+        plugin_arr = re.findall(r'\[\+\]\s(.*?)\n\n',plugin_output , re.DOTALL) #scrapes all the plugins present in plugin_output
 
-    output_data = []
-    for plugin in plugin_arr:
-        vuln_pattern = r'vulnerabilit.* identified:(.*)'
-        vulnerabilities = re.search(vuln_pattern,plugin, re.DOTALL)
-        pattern = r'\[!\](.*?)References'
-        vuln_arr = re.findall(pattern , vulnerabilities.group(0).strip(), re.DOTALL)
-        num_of_vuln = len(vuln_arr)
-
-
-        vulns = []
-        for vuln in vuln_arr:
-            title_pattern = re.compile(r'Title: (.*)')
-            fixed_pattern = re.compile(r'Fixed in: (.*)')
-
-            title = title_pattern.search(vuln)
-            fixed = fixed_pattern.search(vuln)
-
-            data = {
-                'title' : title.group(1),
-                'Version' : fixed.group(1)
-            }
-            vulns.append(data)
+        #find vulnerabilities of each plugin
+        output_data = []
+        for plugin in plugin_arr:
+            vuln_pattern = r'vulnerabilit.* identified:(.*)'
+            vulnerabilities = re.search(vuln_pattern,plugin, re.DOTALL)
 
 
-        plugin_vuln_data = {
-            'number' : num_of_vuln,
-            'vulns' : vulns
-        }
-        output_data.append(plugin_vuln_data)
-    return output_data
+            # if the line "vulnerabilities identified" is present in plugin the this will execute
+            if(vulnerabilities):
+                pattern = r'\[!\](.*?)References'
+                vuln_arr = re.findall(pattern , vulnerabilities.group(0).strip(), re.DOTALL)
+                num_of_vuln = len(vuln_arr)
+
+                #find title and version of each vulnerability
+                vulns = []
+                for vuln in vuln_arr:
+                    title_pattern = re.compile(r'Title: (.*)')
+                    fixed_pattern = re.compile(r'Fixed in: (.*)')
+
+                    title = title_pattern.search(vuln)
+                    fixed = fixed_pattern.search(vuln)
+
+                    data = {
+                        'title' : title.group(1),
+                        'Version' : fixed.group(1)
+                    }
+                    vulns.append(data)
+
+
+                plugin_vuln_data = {
+                    'number' : num_of_vuln,
+                    'vulns' : vulns
+                }
+                output_data.append(plugin_vuln_data)
+        return output_data
+    except:
+        print('error')
 
 
 
@@ -81,6 +89,8 @@ wp_output = read_file(filePath)
 
 
 # result = parse_wp_results(wp_output)
+# print(result)
+# print('\n')
 vulnerabilities = find_vulnerabilities(wp_output)
 for vuln in vulnerabilities:
     print(vuln)

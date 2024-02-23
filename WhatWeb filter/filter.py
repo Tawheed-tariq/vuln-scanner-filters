@@ -28,13 +28,13 @@ def filter_scan(scan_output):
     title_match = title_pattern.search(scan_output)
 
     matches = {
-        'country' : country_match.group(1),
-        'http server': server_match.group(1),
-        'IP' : ip_match.group(1),
-        'email' : email_match.group(1),
-        "Bootstrap version" : bootstrap_match.group(1),
-        "JQuery version" : jquery_match.group(1),
-        'Title' : title_match.group(1)
+        'country' : country_match.group(1) if country_match else '',
+        'http server': server_match.group(1) if server_match else '',
+        'IP' : ip_match.group(1) if ip_match else '',
+        'email' : email_match.group(1) if email_match else '',
+        "Bootstrap version" : bootstrap_match.group(1) if bootstrap_match else '',
+        "JQuery version" : jquery_match.group(1) if jquery_match else '',
+        'Title' : title_match.group(1) if title_match else ''
     }
 
     return matches

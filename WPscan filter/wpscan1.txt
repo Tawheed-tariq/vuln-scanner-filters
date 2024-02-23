@@ -1,0 +1,115 @@
+[+] URL: https://example3.com/ [192.168.1.4]
+[+] Started: Fri Feb 23 14:00:00 2024
+
+Interesting Finding(s):
+
+[+] Headers
+ | Interesting Entries:
+ |  - Server: Apache
+ |  - X-Powered-By: PHP/7.4.12
+ | Found By: Headers (Passive Detection)
+ | Confidence: 100%
+
+[+] robots.txt found: https://example3.com/robots.txt
+ | Interesting Entries:
+ |  - /wp-admin/
+ |  - /wp-login.php
+ | Found By: Robots Txt (Aggressive Detection)
+ | Confidence: 100%
+
+[+] XML-RPC seems to be enabled: https://example3.com/xmlrpc.php
+ | Found By: Direct Access (Aggressive Detection)
+ | Confidence: 100%
+ | References:
+ |  - http://codex.wordpress.org/XML-RPC_Pingback_API
+
+[+] WordPress version 5.9 identified (Latest, released on 2024-01-15).
+ | Found By: Rss Generator (Passive Detection)
+ |  - https://example3.com/feed/, <generator>https://wordpress.org/?v=5.9</generator>
+ |  - https://example3.com/comments/feed/, <generator>https://wordpress.org/?v=5.9</generator>
+
+[+] WordPress theme in use: twentytwenty
+ | Location: https://example3.com/wp-content/themes/twentytwenty/
+ | Last Updated: 2023-11-25T00:00:00.000Z
+ | Readme: https://example3.com/wp-content/themes/twentytwenty/readme.txt
+ | [!] The version is out of date, the latest version is 1.9
+ | Style URL: https://example3.com/wp-content/themes/twentytwenty/style.css
+ | Style Name: Twenty Twenty
+ | Style URI: https://wordpress.org/themes/twentytwenty/
+ | Description: Our default theme for 2020 is designed to take full advantage of the flexibility of the block editor. Organizations and businesses have the ability to create dynamic landing pages with endless layouts using the group and column blocks. The centered content column and fine-tuned typography also makes it perfect for traditional blogging.
+ | Author: the WordPress team
+ | Author URI: https://wordpress.org/
+ |
+ | Found By: Urls In Homepage (Passive Detection)
+ | Confirmed By: Urls In 404 Page (Passive Detection)
+ |
+ | Version: 1.8 (80% confidence)
+ | Found By: Style (Passive Detection)
+ |  - https://example3.com/wp-content/themes/twentytwenty/style.css, Match: 'Version: 1.8'
+
+[+] Enumerating Vulnerable Plugins (via Passive Methods)
+[+] Checking Plugin Versions (via Passive and Aggressive Methods)
+
+[i] Plugin(s) Identified:
+
+[+] akismet
+ | Location: https://example3.com/wp-content/plugins/akismet/
+ | Last Updated: 2024-01-30T12:15:00.000Z
+ | [!] The version is out of date, the latest version is 4.2.10
+ |
+ | Found By: Urls In Homepage (Passive Detection)
+ | Confirmed By: Urls In 404 Page (Passive Detection)
+ |
+ | [!] Title: Akismet <= 4.2.8 - Authenticated Stored XSS
+ |     Fixed in: 4.2.9
+ |     References:
+ |      - https://wpscan.com/vulnerability/24c0d234-0ef3-4038-a15d-1ff1bd4653d2
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-22344
+ |      - https://www.wordfence.com/threat-intel/vulnerabilities/id/8e79a208-e370-4dd5-88e3-88b57e1e0e0e
+ |
+ | [!] Title: Akismet <= 4.2.6 - Authenticated Stored Cross-Site Scripting (XSS)
+ |     Fixed in: 4.2.7
+ |     References:
+ |      - https://wpscan.com/vulnerability/871a5f43-091f-46e5-a057-fd3762c6f452
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-13233
+ |      - https://www.wordfence.com/threat-intel/vulnerabilities/id/a11b15dc-ec0c-4938-8526-bbfe72bda238
+ |
+ | Version: 4.2.5 (100% confidence)
+ | Found By: Query Parameter (Passive Detection)
+ |  - https://example3.com/wp-content/plugins/akismet/readme.txt?ver=4.2.5
+ | Confirmed By:
+ |  Readme - Stable Tag (Aggressive Detection)
+ |   - https://example3.com/wp-content/plugins/akismet/readme.txt
+
+[+] Enumerating Vulnerable Themes (via Passive and Aggressive Methods)
+[+] Checking Theme Versions (via Passive and Aggressive Methods)
+
+[i] No themes Found.
+
+[+] Enumerating Users (via Passive and Aggressive Methods)
+
+[i] User(s) Identified:
+
+[+] admin
+ | Found By: Rss Generator (Passive Detection)
+ | Confirmed By:
+ |  Wp Json Api (Aggressive Detection)
+ |   - https://example3.com/wp-json/wp/v2/users/?per_page=100&page=1
+ |  Oembed API - Author URL (Aggressive Detection)
+ |   - https://example3.com/wp-json/oembed/1.0/embed?url=https://example3.com/&format=json
+ |  Rss Generator (Aggressive Detection)
+ |  Author Id Brute Forcing - Author Pattern (Aggressive Detection)
+ |  Login Error Messages (Aggressive Detection)
+
+[+] WPScan DB API OK
+ | Plan: free
+ | Requests Done (during the scan): 6
+ | Requests Remaining: 19
+
+[+] Finished: Fri Feb 23 14:20:00 2024
+[+] Requests Done: 704
+[+] Cached Requests: 12
+[+] Data Sent: 249.401 KB
+[+] Data Received: 1.244 MB
+[+] Memory used: 306.098 MB
+[+] Elapsed time: 00:20:00

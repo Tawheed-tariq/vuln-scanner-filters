@@ -26,22 +26,44 @@ def parse_wp_results(wp_output):
 
     return matches
 
-
+#scrapes the number of vulnerabilities and title, version of each vulnerability and returns an array (output data)
 def find_vulnerabilities(wp_output):
     plugins_pattern = r'\[i\] Plugin\(s\) Identified:\n(.*)Interesting Finding\(s\):'
 
     plugins = re.search(plugins_pattern, wp_output, re.DOTALL)
     plugin_output = plugins.group(1).strip() #plugins part of the wp_output
-    plugin_arr = re.findall(r'\[\+\]\s(.*?)\n\n',plugin_output , re.DOTALL) #scrapes all the plugins present in plugins
+    plugin_arr = re.findall(r'\[\+\]\s(.*?)\n\n',plugin_output , re.DOTALL) #scrapes all the plugins present in plugin_output
+
+    output_data = []
+    for plugin in plugin_arr:
+        vuln_pattern = r'vulnerabilit.* identified:(.*)'
+        vulnerabilities = re.search(vuln_pattern,plugin, re.DOTALL)
+        pattern = r'\[!\](.*?)References'
+        vuln_arr = re.findall(pattern , vulnerabilities.group(0).strip(), re.DOTALL)
+        num_of_vuln = len(vuln_arr)
 
 
+        vulns = []
+        for vuln in vuln_arr:
+            title_pattern = re.compile(r'Title: (.*)')
+            fixed_pattern = re.compile(r'Fixed in: (.*)')
 
-    vuln_pattern = r'vulnerabilities identified:(.*)'
-    vulnerabilities = re.search(vuln_pattern,plugin_arr[0], re.DOTALL)
-    pattern = r'\[!\](.*?)References'
-    vuln_arr = re.findall(pattern , vulnerabilities.group(0).strip(), re.DOTALL)
-    for vuln in vuln_arr:
-        print(vuln + '\n')
+            title = title_pattern.search(vuln)
+            fixed = fixed_pattern.search(vuln)
+
+            data = {
+                'title' : title.group(1),
+                'Version' : fixed.group(1)
+            }
+            vulns.append(data)
+
+
+        plugin_vuln_data = {
+            'number' : num_of_vuln,
+            'vulns' : vulns
+        }
+        output_data.append(plugin_vuln_data)
+    return output_data
 
 
 
@@ -59,5 +81,8 @@ wp_output = read_file(filePath)
 
 
 # result = parse_wp_results(wp_output)
-find_vulnerabilities(wp_output)
+vulnerabilities = find_vulnerabilities(wp_output)
+for vuln in vulnerabilities:
+    print(vuln)
+    print('\n')
 # find_users(wp_output)

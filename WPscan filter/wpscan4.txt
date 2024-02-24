@@ -1,0 +1,260 @@
+[+] URL: https://staging.leadgenapp.io/ [162.240.76.5]
+[+] Started: Tue Feb 13 05:51:18 2024
+
+Interesting Finding(s):
+
+[+] Headers
+ | Interesting Entries:
+ |  - Server: Apache
+ |  - X-Endurance-Cache-Level: 0
+ |  - X-nginx-cache: WordPress
+ | Found By: Headers (Passive Detection)
+ | Confidence: 100%
+
+[+] robots.txt found: https://staging.leadgenapp.io/robots.txt
+ | Found By: Robots Txt (Aggressive Detection)
+ | Confidence: 100%
+
+[+] XML-RPC seems to be enabled: https://staging.leadgenapp.io/xmlrpc.php
+ | Found By: Link Tag (Passive Detection)
+ | Confidence: 100%
+ | Confirmed By: Direct Access (Aggressive Detection), 100% confidence
+ | References:
+ |  - http://codex.wordpress.org/XML-RPC_Pingback_API
+ |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_ghost_scanner/
+ |  - https://www.rapid7.com/db/modules/auxiliary/dos/http/wordpress_xmlrpc_dos/
+ |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_xmlrpc_login/
+ |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_pingback_access/
+
+[+] WordPress readme found: https://staging.leadgenapp.io/readme.html
+ | Found By: Direct Access (Aggressive Detection)
+ | Confidence: 100%
+
+[+] Registration is enabled: https://staging.leadgenapp.io/wp-login.php?action=register
+ | Found By: Direct Access (Aggressive Detection)
+ | Confidence: 100%
+
+[+] The external WP-Cron seems to be enabled: https://staging.leadgenapp.io/wp-cron.php
+ | Found By: Direct Access (Aggressive Detection)
+ | Confidence: 60%
+ | References:
+ |  - https://www.iplocation.net/defend-wordpress-from-ddos
+ |  - https://github.com/wpscanteam/wpscan/issues/1299
+
+[+] WordPress version 6.1.5 identified (Outdated, released on 2024-01-30).
+ | Found By: Rss Generator (Passive Detection)
+ |  - https://staging.leadgenapp.io/feed/, <generator>https://wordpress.org/?v=6.1.5</generator>
+ |  - https://staging.leadgenapp.io/comments/feed/, <generator>https://wordpress.org/?v=6.1.5</generator>
+
+[+] WordPress theme in use: divi-child
+ | Location: https://staging.leadgenapp.io/wp-content/themes/divi-child/
+ | Readme: https://staging.leadgenapp.io/wp-content/themes/divi-child/README.md
+ | Style URL: https://staging.leadgenapp.io/wp-content/themes/divi-child/style.css?ver=4.22.1
+ | Style Name: Divi Child Theme
+ | Description: A child theme to house custom coding which modifies the Divi parent theme by Elegant Themes. Include...
+ | Author: Brad Dalton http://wpsites.net
+ |
+ | Found By: Css Style In Homepage (Passive Detection)
+ | Confirmed By: Css Style In 404 Page (Passive Detection)
+ |
+ | The version could not be determined.
+ |
+ | Parent Theme(s):
+ |
+ | Location: https://staging.leadgenapp.io/wp-content/themes/Divi/
+ | Latest Version: 4.24
+ | Readme: https://staging.leadgenapp.io/wp-content/themes/Divi/README.md
+ | Style URL: https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap
+ |
+ | Found By: Parent Themes (Passive Detection)
+ |
+ | [!] 6 vulnerabilities identified:
+ |
+ | [!] Title: ElegantThemes - Privilege Escalation
+ |     Fixed in: 2.6.4
+ |     References:
+ |      - https://wpscan.com/vulnerability/c253d387-f05a-4a68-9554-ecb846942b28
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-11002
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-11003
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-11004
+ |      - https://www.pritect.net/blog/elegant-themes-security-vulnerability
+ |      - http://wptavern.com/critical-security-vulnerability-discovered-in-elegant-themes-products
+ |
+ | [!] Title: ElegantThemes (Divi, Extra, divi-builder) - Authenticated Stored Cross-Site Scripting (XSS)
+ |     Fixed in: 3.17.3
+ |     References:
+ |      - https://wpscan.com/vulnerability/75b210d4-538b-4cd5-b06d-5d8f5e610377
+ |      - https://us7.campaign-archive.com/?u=9ae7aa91c578052b052b864d6&id=a9763c15f2
+ |      - https://divinotes.com/divi-changelog/
+ |      - https://divinotes.com/extra-changelog/
+ |      - https://www.elegantthemes.com/api/changelog/divi-builder.txt
+ |      - https://www.elegantthemes.com/api/changelog/divi.txt
+ |      - https://www.elegantthemes.com/api/changelog/extra.txt
+ |
+ | [!] Title: ElegantThemes (Divi, Extra, divi-builder < 4.0.10) - Authenticated Code Injection
+ |     Fixed in: 4.0.10
+ |     References:
+ |      - https://wpscan.com/vulnerability/fddc2746-0e65-4a58-85d1-3d4ce20a1739
+ |      - https://us7.campaign-archive.com/?u=9ae7aa91c578052b052b864d6&id=e3532c8cb1
+ |      - https://www.elegantthemes.com/api/changelog/divi-builder.txt
+ |      - https://www.elegantthemes.com/api/changelog/divi.txt
+ |      - https://www.elegantthemes.com/api/changelog/extra.txt
+ |
+ | [!] Title: Elegant Themes (Divi 3.0 - 4.5.2, Extra 2.0 - 4.5.2, Divi Builder 2.0 - 4.5.2) - Authenticated Arbitrary File Upload
+ |     Fixed in: 4.5.3
+ |     References:
+ |      - https://wpscan.com/vulnerability/bc250084-9549-4996-a11c-2a082f4d3f68
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-35945
+ |      - https://www.wordfence.com/blog/2020/08/critical-vulnerability-exposes-over-700000-sites-using-divi-extra-and-divi-builder/
+ |      - https://us7.campaign-archive.com/?u=9ae7aa91c578052b052b864d6&id=cb6b4b1ed3
+ |
+ | [!] Title: Divi < 4.20.3 - Contributor+ Stored XSS
+ |     Fixed in: 4.20.3
+ |     References:
+ |      - https://wpscan.com/vulnerability/f8b5a18e-b72f-4da0-94a8-3ae83d686d8a
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-29099
+ |
+ | [!] Title: Divi < 4.23.2 - Authenticated (Contributor+) Stored Cross-Site Scripting via Shortcode
+ |     Fixed in: 4.23.2
+ |     References:
+ |      - https://wpscan.com/vulnerability/4dfa19af-6aa2-4cf4-95bd-ac2d19d442ec
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-6744
+ |      - https://www.wordfence.com/threat-intel/vulnerabilities/id/999475c5-5f17-47fa-a0d0-47cb5a8a0eb4
+ |
+ | The version could not be determined.
+
+[+] Enumerating Vulnerable Plugins (via Passive Methods)
+[+] Checking Plugin Versions (via Passive and Aggressive Methods)
+
+[i] Plugin(s) Identified:
+
+[+] gtranslate
+ | Location: https://staging.leadgenapp.io/wp-content/plugins/gtranslate/
+ | Last Updated: 2023-11-20T17:36:00.000Z
+ | [!] The version is out of date, the latest version is 3.0.5
+ |
+ | Found By: Urls In Homepage (Passive Detection)
+ | Confirmed By: Urls In 404 Page (Passive Detection)
+ |
+ | [!] 1 vulnerability identified:
+ |
+ | [!] Title: Translate WordPress with GTranslate < 3.0.4 - Admin+ Stored XSS
+ |     Fixed in: 3.0.4
+ |     References:
+ |      - https://wpscan.com/vulnerability/e4804850-2ac2-4cec-bc27-07ed191d96da
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-4502
+ |
+ | Version: 2.9.15 (100% confidence)
+ | Found By: Readme - Stable Tag (Aggressive Detection)
+ |  - https://staging.leadgenapp.io/wp-content/plugins/gtranslate/readme.txt
+ | Confirmed By: Readme - ChangeLog Section (Aggressive Detection)
+ |  - https://staging.leadgenapp.io/wp-content/plugins/gtranslate/readme.txt
+
+[+] jetpack
+ | Location: https://staging.leadgenapp.io/wp-content/plugins/jetpack/
+ | Last Updated: 2024-02-06T18:01:00.000Z
+ | [!] The version is out of date, the latest version is 13.1.1
+ |
+ | Found By: Urls In Homepage (Passive Detection)
+ | Confirmed By: Urls In 404 Page (Passive Detection)
+ |
+ | [!] 3 vulnerabilities identified:
+ |
+ | [!] Title: Jetpack < 12.8-a.3 - Contributor+ Stored XSS via block attribute
+ |     Fixed in: 12.8-a.3
+ |     References:
+ |      - https://wpscan.com/vulnerability/4478c8d3-0c7f-43a0-9354-46795e0e6fbc
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-45050
+ |      - https://www.wordfence.com/threat-intel/vulnerabilities/id/824360ab-c797-465a-8480-baeae941af29
+ |
+ | [!] Title: Jetpack < 12.7 - Improper Authorization via WPCom External Media REST endpoints
+ |     Fixed in: 12.7
+ |     References:
+ |      - https://wpscan.com/vulnerability/cce4ac0a-777f-4dde-b86e-614a224dbf6e
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-47788
+ |      - https://www.wordfence.com/threat-intel/vulnerabilities/id/e62fa16f-a4a1-44a7-9a66-abafd8dddf67
+ |
+ | [!] Title: Jetpack < 12.7 - Authenticated(Contributor+) Clickjacking via Iframe Injection
+ |     Fixed in: 12.7
+ |     References:
+ |      - https://wpscan.com/vulnerability/01a0ffcd-3bf6-434c-9fd0-d5570ed4f336
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-47774
+ |      - https://www.wordfence.com/threat-intel/vulnerabilities/id/92a3e622-b3b2-450e-82a7-0a942711e8c0
+ |
+ | Version: 12.5 (90% confidence)
+ | Found By: Query Parameter (Passive Detection)
+ |  - https://staging.leadgenapp.io/wp-content/plugins/jetpack/css/jetpack.css?ver=12.5
+ | Confirmed By: Readme - Stable Tag (Aggressive Detection)
+ |  - https://staging.leadgenapp.io/wp-content/plugins/jetpack/readme.txt
+
+[+] tutor
+ | Location: https://staging.leadgenapp.io/wp-content/plugins/tutor/
+ | Last Updated: 2024-01-11T11:04:00.000Z
+ | [!] The version is out of date, the latest version is 2.6.0
+ |
+ | Found By: Urls In Homepage (Passive Detection)
+ | Confirmed By: Urls In 404 Page (Passive Detection)
+ |
+ | [!] 2 vulnerabilities identified:
+ |
+ | [!] Title: Tutor LMS < 2.3.0 - Subscriber+ Stored Cross-Site Scripting
+ |     Fixed in: 2.3.0
+ |     References:
+ |      - https://wpscan.com/vulnerability/1049e940-49b1-4236-bea2-c636f35c5647
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-4805
+ |
+ | [!] Title: Tutor LMS < 2.3.0 - Admin+ Stored XSS
+ |     Fixed in: 2.3.0
+ |     References:
+ |      - https://wpscan.com/vulnerability/de7d8179-1316-4d23-98e7-c1a77b749c96
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-49829
+ |      - https://patchstack.com/database/vulnerability/tutor/wordpress-tutor-lms-plugin-2-2-4-cross-site-scripting-xss-vulnerability
+ |
+ | Version: 2.2.4 (80% confidence)
+ | Found By: Readme - Stable Tag (Aggressive Detection)
+ |  - https://staging.leadgenapp.io/wp-content/plugins/tutor/readme.txt
+
+[+] Enumerating Vulnerable Themes (via Passive and Aggressive Methods)
+ Checking Known Locations - Time: 00:29:31 <================================================================================================> (638 / 638) 100.00% Time: 00:29:31
+[+] Checking Theme Versions (via Passive and Aggressive Methods)
+
+[i] Theme(s) Identified:
+
+[+] Divi
+ | Location: https://staging.leadgenapp.io/wp-content/themes/Divi/
+ | Readme: https://staging.leadgenapp.io/wp-content/themes/Divi/README.md
+ | [!] The version is out of date, the latest version is 4.24
+ | Style URL: https://staging.leadgenapp.io/wp-content/themes/Divi/style.css
+ | Style Name: Divi
+ | Style URI: http://www.elegantthemes.com/gallery/divi/
+ | Description: Smart. Flexible. Beautiful. Divi is the most powerful theme in our collection....
+ | Author: Elegant Themes
+ | Author URI: http://www.elegantthemes.com
+ |
+ | Found By: Urls In Homepage (Passive Detection)
+ | Confirmed By:
+ |  Urls In 404 Page (Passive Detection)
+ |  Known Locations (Aggressive Detection)
+ |   - https://staging.leadgenapp.io/wp-content/themes/Divi/, status: 500
+ |
+ | [!] 1 vulnerability identified:
+ |
+ | [!] Title: Divi < 4.23.2 - Authenticated (Contributor+) Stored Cross-Site Scripting via Shortcode
+ |     Fixed in: 4.23.2
+ |     References:
+ |      - https://wpscan.com/vulnerability/4dfa19af-6aa2-4cf4-95bd-ac2d19d442ec
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-6744
+ |      - https://www.wordfence.com/threat-intel/vulnerabilities/id/999475c5-5f17-47fa-a0d0-47cb5a8a0eb4
+ |
+ | Version: 4.22.1 (80% confidence)
+ | Found By: Style (Aggressive Detection)
+ |  - https://staging.leadgenapp.io/wp-content/themes/Divi/style.css, Match: 'Version: 4.22.1'
+
+[+] Enumerating Users (via Passive and Aggressive Methods)
+ Brute Forcing Author IDs - Time: 00:00:23 <==================================================================================================> (10 / 10) 100.00% Time: 00:00:23
+
+[i] User(s) Identified:
+
+[+] Shahid Shahmiri
+ | Found By: Rss Generator (Passive Detection)
+ | Confirmed By: Rss Generator (Aggressive Detection)

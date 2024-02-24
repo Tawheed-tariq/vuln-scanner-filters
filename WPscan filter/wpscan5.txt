@@ -1,0 +1,82 @@
+[+] URL: https://resources.leadgenapp.io/ [162.240.76.5]
+[+] Started: Mon Feb 12 01:24:20 2024
+
+Interesting Finding(s):
+
+[+] Headers
+ | Interesting Entries:
+ |  - Server: Apache
+ |  - X-Endurance-Cache-Level: 2
+ |  - X-nginx-cache: WordPress
+ | Found By: Headers (Passive Detection)
+ | Confidence: 100%
+
+[+] robots.txt found: https://resources.leadgenapp.io/robots.txt
+ | Found By: Robots Txt (Aggressive Detection)
+ | Confidence: 100%
+
+[+] XML-RPC seems to be enabled: https://resources.leadgenapp.io/xmlrpc.php
+ | Found By: Direct Access (Aggressive Detection)
+ | Confidence: 100%
+ | References:
+ |  - http://codex.wordpress.org/XML-RPC_Pingback_API
+ |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_ghost_scanner/
+ |  - https://www.rapid7.com/db/modules/auxiliary/dos/http/wordpress_xmlrpc_dos/
+ |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_xmlrpc_login/
+ |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_pingback_access/
+
+[+] WordPress readme found: https://resources.leadgenapp.io/readme.html
+ | Found By: Direct Access (Aggressive Detection)
+ | Confidence: 100%
+
+[+] The external WP-Cron seems to be enabled: https://resources.leadgenapp.io/wp-cron.php
+ | Found By: Direct Access (Aggressive Detection)
+ | Confidence: 60%
+ | References:
+ |  - https://www.iplocation.net/defend-wordpress-from-ddos
+ |  - https://github.com/wpscanteam/wpscan/issues/1299
+
+[+] WordPress version 6.4.3 identified (Latest, released on 2024-01-30).
+ | Found By: Emoji Settings (Passive Detection)
+ |  - https://resources.leadgenapp.io/, Match: 'wp-includes\/js\/wp-emoji-release.min.js?ver=6.4.3'
+ | Confirmed By: Meta Generator (Passive Detection)
+ |  - https://resources.leadgenapp.io/, Match: 'WordPress 6.4.3'
+
+[+] WordPress theme in use: twentytwentythree
+ | Location: https://resources.leadgenapp.io/wp-content/themes/twentytwentythree/
+ | Latest Version: 1.3 (up to date)
+ | Last Updated: 2023-11-07T00:00:00.000Z
+ | Readme: https://resources.leadgenapp.io/wp-content/themes/twentytwentythree/readme.txt
+ | Style URL: https://resources.leadgenapp.io/wp-content/themes/twentytwentythree/style.css
+ | Style Name: Twenty Twenty-Three
+ | Style URI: https://wordpress.org/themes/twentytwentythree
+ | Description: Twenty Twenty-Three is designed to take advantage of the new design tools introduced in WordPress 6....
+ | Author: the WordPress team
+ | Author URI: https://wordpress.org
+ |
+ | Found By: Urls In Homepage (Passive Detection)
+ | Confirmed By: Urls In 404 Page (Passive Detection)
+ |
+ | Version: 1.3 (80% confidence)
+ | Found By: Style (Passive Detection)
+ |  - https://resources.leadgenapp.io/wp-content/themes/twentytwentythree/style.css, Match: 'Version: 1.3'
+
+[+] Enumerating Vulnerable Plugins (via Passive Methods)
+[+] Checking Plugin Versions (via Passive and Aggressive Methods)
+
+[i] No plugins Found.
+
+[+] Enumerating Timthumbs (via Passive and Aggressive Methods)
+ Checking Known Locations - Time: 00:37:59 <==============================================================================================> (2575 / 2575) 100.00% Time: 00:37:59
+
+[i] No Timthumbs Found.
+
+[+] Enumerating Users (via Passive and Aggressive Methods)
+ Brute Forcing Author IDs - Time: 00:00:09 <==================================================================================================> (10 / 10) 100.00% Time: 00:00:09
+
+[i] User(s) Identified:
+
+[+] christopher-lier
+ | Found By: Wp Json Api (Aggressive Detection)
+ |  - https://resources.leadgenapp.io/wp-json/wp/v2/users/?per_page=100&page=1
+ | Confirmed By: Author Id Brute Forcing - Author Pattern (Aggressive Detection)

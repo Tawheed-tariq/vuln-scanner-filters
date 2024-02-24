@@ -56,6 +56,6 @@ nmap_output = read_file(filePath)
 
 
 parsed_sites = parse_nmap_results(nmap_output)
-# for site in parsed_sites:
-#     print(site)
-#     print('\n')
+for site in parsed_sites:
+    print(site)
+    print('\n')

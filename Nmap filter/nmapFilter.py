@@ -5,10 +5,26 @@ def read_file(filename):
     with open(filename, 'r') as file:
         return file.read()
 
+def get_version(service_info):
+    example_pattern = re.compile(r'\s{2,}')
+    serviceArr = example_pattern.split(service_info)
+    version = ''
+    service = ''
+    if(len(serviceArr) < 2):
+        version = None
+        service = serviceArr[0]
+    else:
+        service= serviceArr[0]
+        version = serviceArr[1]
+    data = {
+        'service' : service,
+        'version' : version
+    }
+    return data
+
 def parse_nmap_results(nmap_output):
     # Regular expressions to match open ports and banners
     port_pattern = re.compile(r'(\d+)\/(tcp|udp)\s+(open)\s+(.+)')
-    example_pattern = re.compile(r'\s{2,}')
     wordpress_sites = []
 
 
@@ -21,25 +37,14 @@ def parse_nmap_results(nmap_output):
             state = port_match.group(3)
             service_info = port_match.group(4)
 
-
-            serviceArr = example_pattern.split(service_info)
-            version = ''
-            service = ''
-            if(len(serviceArr) < 2):
-                version = None
-                service = serviceArr[0]
-            else:
-                service= serviceArr[0]
-                version = serviceArr[1]
-
-
+            data = get_version(service_info) #recieves the version and service 
+            
             current_site={
                 'port': port, 
                 'protocol': protocol, 
-                'state': state, 
-                'service' : service,
-                'version': version
+                'state': state
             }
+            current_site.update(data)
             wordpress_sites.append(current_site)
 
     return wordpress_sites
@@ -51,7 +56,6 @@ nmap_output = read_file(filePath)
 
 
 parsed_sites = parse_nmap_results(nmap_output)
-for site in parsed_sites:
-    print(site)
-    print('\n')
-
+# for site in parsed_sites:
+#     print(site)
+#     print('\n')

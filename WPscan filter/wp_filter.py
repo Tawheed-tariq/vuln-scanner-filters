@@ -68,12 +68,16 @@ def find_vulnerabilities(wp_output):
             #find vulnerabilities of each plugin
             output_data = []
             for plugin in plugin_arr:
+                plugin_name_pattern = r'(.*)'
+                plugin_name = re.match(plugin_name_pattern, plugin).group(1)
+
                 vuln_pattern = r'vulnerabilit.* identified:(.*)'
                 vulnerabilities = re.search(vuln_pattern,plugin, re.DOTALL)
 
                 # if the line "vulnerabilities identified" is present in plugin the this will execute
                 if(vulnerabilities):
                     plugin_vuln_data = plugin_vulnerabilities(vulnerabilities)
+                    plugin_vuln_data['name'] = plugin_name # add plugin name to the dict
                     output_data.append(plugin_vuln_data)
 
             return output_data if len(output_data) > 0 else None

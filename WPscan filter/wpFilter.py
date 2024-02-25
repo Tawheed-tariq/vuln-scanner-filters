@@ -91,8 +91,9 @@ def find_users(wp_output):
     if users:
         users_output = users.group(1).strip()
 
-        pattern = r'\[\+\](.*?)\n'
-        users_arr = re.findall(pattern, users_output)
+        # pattern = r'\[\+\](.*?)\n'
+        # users_arr = re.findall(pattern, users_output)
+        users_arr = users_output.split('\n\n')
         
         return users_arr
 

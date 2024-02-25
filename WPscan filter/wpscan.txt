@@ -222,6 +222,10 @@ Interesting Finding(s):
  |  Author Id Brute Forcing - Author Pattern (Aggressive Detection)
  |  Login Error Messages (Aggressive Detection)
 
+[+] Shahid Shahmiri
+ | Found By: Rss Generator (Passive Detection)
+ | Confirmed By: Rss Generator (Aggressive Detection)
+
 [+] WPScan DB API OK
  | Plan: free
  | Requests Done (during the scan): 6

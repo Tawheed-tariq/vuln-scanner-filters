@@ -89,12 +89,13 @@ def find_vulnerabilities(wp_output):
 def find_users(wp_output):
     users_pattern = r'\[i\] User\(s\) Identified:\n(.*?)(?:\[\+\] WPScan DB API|\[\+\] Finished|$)'
     users = re.search(users_pattern, wp_output , re.DOTALL)
-    users_output = users.group(1).strip()
+    if users:
+        users_output = users.group(1).strip()
 
-    pattern = r'\[\+\](.*)'
-    users_arr = re.findall(pattern, users_output)
-    
-    return users_arr
+        pattern = r'\[\+\](.*)'
+        users_arr = re.findall(pattern, users_output)
+        
+        return users_arr
 
 
 

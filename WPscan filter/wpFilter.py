@@ -5,11 +5,17 @@ def read_file(filename):
     with open(filename, 'r') as file:
         return file.read()
 
+def append_file(result):
+    filename = os.path.join(current_directory, 'result.txt')
+    with open(filename , 'a') as file:
+        file.write(result + '\n')
+
+
 # scrapes robots.txt, xml-RPC, Wordpress README, Wordpress Version from wp scan output
 def parse_wp_results(wp_output):
-    robots_txt_pattern = r'robots.txt found: (.*?)\n\n'
-    wordpress_readme_pattern = r'WordPress readme found: (.*?)\n\n'
-    wordpress_version_pattern = re.compile(r'WordPress version (.*)')
+    robots_txt_pattern = r'\[\+\] robots.txt found: (.*?)\n\n'
+    wordpress_readme_pattern = r'\[\+\] WordPress readme found: (.*?)\n\n'
+    wordpress_version_pattern = re.compile(r'\[\+\] WordPress version (.*)')
 
     robots_match = re.search(robots_txt_pattern, wp_output, re.DOTALL)
     wordpress_readme = re.search(wordpress_readme_pattern, wp_output, re.DOTALL)
@@ -17,13 +23,17 @@ def parse_wp_results(wp_output):
 
     robots_txt = robots_match.group(0).strip() + '\n' + robots_match.group(1).strip() if robots_match else ''
     readme = wordpress_readme.group(0).strip() + '\n' + wordpress_readme.group(1).strip() if wordpress_readme else ''
-    matches = {
-        'robots.txt' : robots_txt,
-        'wordpress readme' : readme,
-        'wordpress version' : wordpress_version.group(1) if wordpress_version else ''
-    }
+    version = wordpress_version.group(0) + wordpress_version.group(1) if wordpress_version else ''
 
-    return matches
+    # matches = {
+    #     'robots.txt' : robots_txt,
+    #     'wordpress readme' : readme,
+    #     'wordpress version' : version
+    # }
+    result = robots_txt + '\n\n' + readme + '\n\n' + version + '\n'
+    append_file(result)
+
+    # return matches
 
 #finds vulnerabilities of each plugin
 def plugin_vulnerabilities(vulnerabilities):
@@ -91,11 +101,10 @@ def find_users(wp_output):
     if users:
         users_output = users.group(1).strip()
 
-        # pattern = r'\[\+\](.*?)\n'
-        # users_arr = re.findall(pattern, users_output)
         users_arr = users_output.split('\n\n')
-        
-        return users_arr
+        for user in users_arr:
+            append_file(user + '\n')
+        # return users_arr
 
 
 
@@ -104,7 +113,7 @@ filePath = os.path.join(current_directory, 'wpscan.txt')
 wp_output = read_file(filePath)
 
 
-# result = parse_wp_results(wp_output)
+result = parse_wp_results(wp_output)
 # print(result)
 # print('\n')
 
@@ -119,4 +128,4 @@ wp_output = read_file(filePath)
 
 
 users = find_users(wp_output)
-print(users)
+# print(users)

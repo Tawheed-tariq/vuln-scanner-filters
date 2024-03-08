@@ -111,9 +111,9 @@ print('\n')
 
 vulnerabilities = find_vulnerabilities(wp_output)
 if(vulnerabilities):
-    for vuln in vulnerabilities:
-        print(vuln)
-        print('\n')
+    with open('result.txt', 'a') as file:
+        for vuln in vulnerabilities:
+            file.write(str(vuln))
 else:
     print(f"vulnerabilities are : {vulnerabilities}")
 

@@ -28,18 +28,21 @@ def filter_scan(scan_output):
     title_match = title_pattern.search(scan_output)
 
     matches = {
-        'headings' : ["Title","Country", "HTTP Server", "IP", "Email", "Bootstrap Version", "Jquery Version"],
-        'dataRows' : [
-            title_match.group(1) if title_match else '',
-            country_match.group(1) if country_match else '',
-            server_match.group(1) if server_match else '',
-            ip_match.group(1) if ip_match else '',
-            email_match.group(1) if email_match else '',
-            bootstrap_match.group(1) if bootstrap_match else '',
-            jquery_match.group(1) if jquery_match else ''
-        ]
+        'res' : '',
+        'data' : {
+            'headings' : ["Title","Country", "HTTP Server", "IP", "Email", "Bootstrap Version", "Jquery Version"],
+            'dataRows' : [
+                title_match.group(1) if title_match else '',
+                country_match.group(1) if country_match else '',
+                server_match.group(1) if server_match else '',
+                ip_match.group(1) if ip_match else '',
+                email_match.group(1) if email_match else '',
+                bootstrap_match.group(1) if bootstrap_match else '',
+                jquery_match.group(1) if jquery_match else ''
+            ]
+        }
     }
-
+    matches['res'] = 'Genral Info'
     return matches
 
 

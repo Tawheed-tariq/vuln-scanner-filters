@@ -27,9 +27,9 @@ def parse_nmap_results(nmap_output):
     wordpress_sites = {
         'res' : '',
         'data' : {
-                'headings' : ["Port, Protocol, Status, Service, Version"],
-                'dataRows' : []
-            }
+            'headings' : ["Port, Protocol, Status, Service, Version"],
+            'dataRows' : []
+        }
     }
 
 

@@ -11,7 +11,7 @@ def get_version(service_info):
     version = ''
     service = ''
     if(len(serviceArr) < 2):
-        version = None
+        version = 'None'
         service = serviceArr[0]
     else:
         service= serviceArr[0]
@@ -25,8 +25,11 @@ def parse_nmap_results(nmap_output):
     # Regular expressions to match open ports and banners
     port_pattern = re.compile(r'(\d+)\/(tcp|udp)\s+(open)\s+(.+)')
     wordpress_sites = {
-        'headings' : ["Port, Protocol, Status, Service, Version"],
-        'dataRows' : []
+        'res' : '',
+        'data' : {
+                'headings' : ["Port, Protocol, Status, Service, Version"],
+                'dataRows' : []
+            }
     }
 
 
@@ -43,8 +46,8 @@ def parse_nmap_results(nmap_output):
             
             current_site=[port, protocol, state]
             current_site.extend(data)
-            wordpress_sites['dataRows'].append(current_site)
-
+            wordpress_sites['data']['dataRows'].append(current_site)
+    wordpress_sites['res'] = str(len(wordpress_sites['data']['dataRows'])) + ' Ports Found'
     return wordpress_sites
 
 
@@ -54,5 +57,7 @@ nmap_output = read_file(filePath)
 
 
 parsed_sites = parse_nmap_results(nmap_output)
-for site in parsed_sites['dataRows']:
+print(parsed_sites['res'])
+for site in parsed_sites['data']['dataRows']:
     print(site)
+

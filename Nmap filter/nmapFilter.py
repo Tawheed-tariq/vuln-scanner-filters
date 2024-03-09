@@ -15,7 +15,7 @@ def get_version(service_info):
         service = serviceArr[0]
     else:
         service= serviceArr[0]
-        version = serviceArr[1]
+        version = serviceArr[-1]
     if(service[-1] == '?'):
         service = service[:len(service)-1]
     data = [service, version]
@@ -52,7 +52,7 @@ def parse_nmap_results(nmap_output):
 
 
 current_directory = os.path.dirname(os.path.abspath(__file__))
-filePath = os.path.join(current_directory, 'namp.txt')
+filePath = os.path.join(current_directory, 'nmap1.txt')
 nmap_output = read_file(filePath)
 
 
@@ -61,3 +61,4 @@ print(parsed_sites['res'])
 for site in parsed_sites['data']['dataRows']:
     print(site)
 
+# print(parsed_sites)

@@ -96,13 +96,26 @@ def find_vulnerabilities(wp_output):
 def find_users(wp_output):
     users_pattern = r'\[i\] User\(s\) Identified:\n(.*?)(?:\[\+\] WPScan DB API|\[\+\] Finished|$)'
     users = re.search(users_pattern, wp_output , re.DOTALL)
+
+    response = {
+        'res' : '',
+        'data' : {
+            'headings' : ["username"],
+            'dataRows' : []
+        }
+    }
     if users:
         users_output = users.group(1).strip()
-
         pattern = r'\[\+\](.*)'
         users_arr = re.findall(pattern, users_output)
+
+        for user in users_arr:
+            response['data']['dataRows'].append([user])
+        response['res'] = str(len(response['data']['dataRows'])) + ' User(s) Found'
+
+        return response
+
         
-        return users_arr
 
 
 
@@ -111,16 +124,16 @@ filePath = os.path.join(current_directory, 'wpscan.txt')
 wp_output = read_file(filePath)
 
 
-result = parse_wp_results(wp_output)
-print(result)
-print('\n')
+# result = parse_wp_results(wp_output)
+# print(result)
+# print('\n')
 
 
-vulnerabilities = find_vulnerabilities(wp_output)
-if(vulnerabilities):
-    print(vulnerabilities)
-else:
-    print(f"vulnerabilities are : {vulnerabilities}")
+# vulnerabilities = find_vulnerabilities(wp_output)
+# if(vulnerabilities):
+#     print(vulnerabilities)
+# else:
+#     print(f"vulnerabilities are : {vulnerabilities}")
 
 
 users = find_users(wp_output)

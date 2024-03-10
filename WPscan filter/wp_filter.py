@@ -124,16 +124,16 @@ filePath = os.path.join(current_directory, 'wpscan.txt')
 wp_output = read_file(filePath)
 
 
-# result = parse_wp_results(wp_output)
-# print(result)
-# print('\n')
+result = parse_wp_results(wp_output)
+print(result)
+print('\n')
 
 
-# vulnerabilities = find_vulnerabilities(wp_output)
-# if(vulnerabilities):
-#     print(vulnerabilities)
-# else:
-#     print(f"vulnerabilities are : {vulnerabilities}")
+vulnerabilities = find_vulnerabilities(wp_output)
+if(vulnerabilities):
+    print(vulnerabilities)
+else:
+    print(f"vulnerabilities are : {vulnerabilities}")
 
 
 users = find_users(wp_output)

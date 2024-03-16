@@ -120,7 +120,7 @@ def find_users(wp_output):
 
 
 current_directory = os.path.dirname(os.path.abspath(__file__))
-filePath = os.path.join(current_directory, 'wpscan.txt')
+filePath = os.path.join(current_directory, 'wpscan4.txt')
 wp_output = read_file(filePath)
 
 

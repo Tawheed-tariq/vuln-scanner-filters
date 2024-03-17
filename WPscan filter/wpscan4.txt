@@ -1,5 +1,19 @@
+_______________________________________________________________
+         __          _______   _____
+         \ \        / /  __ \ / ____|
+          \ \  /\  / /| |__) | (___   ___  __ _ _ __ ®
+           \ \/  \/ / |  ___/ \___ \ / __|/ _` | '_ \
+            \  /\  /  | |     ____) | (__| (_| | | | |
+             \/  \/   |_|    |_____/ \___|\__,_|_| |_|
+
+         WordPress Security Scanner by the WPScan Team
+                         Version 3.8.25
+       Sponsored by Automattic - https://automattic.com/
+       @_WPScan_, @ethicalhack3r, @erwan_lr, @firefart
+_______________________________________________________________
+
 [+] URL: https://casetcollege.in/ [216.10.253.176]
-[+] Started: Sat Mar 16 17:47:44 2024
+[+] Started: Sun Mar 17 16:03:02 2024
 
 Interesting Finding(s):
 
@@ -75,14 +89,14 @@ Interesting Finding(s):
 
 [+] Enumerating Vulnerable Themes (via Passive and Aggressive Methods)
 
- Checking Known Locations -: |===================================================================================================================================|
+ Checking Known Locations -: |===================================================================================================================================================|
 [+] Checking Theme Versions (via Passive and Aggressive Methods)
 
 [i] No themes Found.
 
 [+] Enumerating Users (via Passive and Aggressive Methods)
 
- Brute Forcing Author IDs -: |===================================================================================================================================|
+ Brute Forcing Author IDs -: |===================================================================================================================================================|
 
 [i] User(s) Identified:
 
@@ -113,10 +127,10 @@ Interesting Finding(s):
  | Requests Done (during the scan): 4
  | Requests Remaining: Unlimited
 
-[+] Finished: Sat Mar 16 17:48:24 2024
+[+] Finished: Sun Mar 17 16:03:36 2024
 [+] Requests Done: 720
 [+] Cached Requests: 10
-[+] Data Sent: 238.647 KB
+[+] Data Sent: 230.924 KB
 [+] Data Received: 690.242 KB
-[+] Memory used: 253.727 MB
-[+] Elapsed time: 00:00:39
+[+] Memory used: 255.297 MB
+[+] Elapsed time: 00:00:34
